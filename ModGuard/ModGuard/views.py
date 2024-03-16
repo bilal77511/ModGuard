@@ -15,14 +15,6 @@ def single_message(request, message):
     except json.JSONDecodeError:
         # If parsing fails, return an error message.
         return JsonResponse({'error': 'Failed to decode the API response'}, status=400)
-
-    # Construct the response data. No need to convert values to string; JsonResponse will serialize them.
-    response_data = {
-        "toxicornot": res.get('behaviour', 'unknown'),
-        "stateofmind": res.get('stateofmind', 'unknown'),
-        "description": res.get('description', 'No description provided')
-    }
-
     return JsonResponse(res)
 
 def message_list(request):
