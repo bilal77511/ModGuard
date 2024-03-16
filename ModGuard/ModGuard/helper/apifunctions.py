@@ -30,7 +30,7 @@ def analyze_comment(comment):
         ]
     )
 
-    return message.content
+    return message.content[0].text
 
 message="i hate when people try to kill animals for eating purpose if i was incharge of it i would have killed them"
 result = analyze_comment(message)
