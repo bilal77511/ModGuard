@@ -1,11 +1,19 @@
 import anthropic
 import json
 import os
-client = anthropic.Anthropic(
-    api_key=os.environ.get("ANTHROPIC_API_KEY"),
-)
+
+from dotenv import load_dotenv
+
+
+load_dotenv()
+
+apikey= os.environ.get("API_KEY")
+
 
 def analyze_comment(comment):
+    client = anthropic.Anthropic(
+    api_key=  apikey,
+)
     message = client.messages.create(
         model="claude-3-opus-20240229",
         max_tokens=1000,
@@ -13,7 +21,7 @@ def analyze_comment(comment):
         system="""You are a moderator, and I want your review on this comment. For comment, please:
 
         1. Categorize it as either 'positive' or 'negative'.
-        2. Identify the state of mind (e.g., racist, threatening, harmless,sexist) behind the comment.
+        2. Identify the state of mind (e.g., racist, sexist ,toxic) behind the comment.
         3. Provide a small description explaining why you categorized the comment as postive or negative and also the state of mind.
 
         Return your analysis in JSON format, following this example:
@@ -32,6 +40,6 @@ def analyze_comment(comment):
 
     return message.content
 
-message="i hate when people try to kill animals for eating purpose if i was incharge of it i would have killed them"
-result = analyze_comment(message)
-print(result)
+# message="i hate when people try to kill animals for eating purpose if i was incharge of it i would have killed them"
+# result = analyze_comment(message)
+# print(result)
