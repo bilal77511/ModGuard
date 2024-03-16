@@ -20,15 +20,13 @@ def analyze_comment(comment):
         temperature=0.0,
         system="""You are a moderator, and I want your review on this comment. For comment, please:
 
-        1. Categorize it as either 'positive' or 'negative'.
-        2. Identify the state of mind (e.g., racist, sexist ,toxic) behind the comment.
-        3. Provide a small description explaining why you categorized the comment as postive or negative and also the state of mind.
+        1. Identify the state of mind in one of the following (racist, sexist, toxic, positive).
+        2. Provide a small description explaining why you categorized the comment in that state of mind.
 
         Return your analysis in JSON format, following this example:
 
         {
             "comment": "I think Asian people should not vote in our country",
-            "behaviour": "negative",
             "stateofmind": "racist",
             "description": "The person thinks some people should not vote based on their race or ethnicity, which is a racist and discriminatory view."
         }
